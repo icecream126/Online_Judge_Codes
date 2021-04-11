@@ -2,30 +2,23 @@
 #include <stdio.h>
 #include <string.h>
 int main() {
-	int loop, left, i, j, flag=0;
+	int loop, left, right;
 	char input[51];
 	scanf("%d", &loop);
-	for (i = 0; i < loop; i++) {
-		memset(input, 0, sizeof(input));
+	for (int i = 0; i < loop; i++) {
+		memset(input, '/0', strlen(input));
 		left = 0;
-		scanf("%s", input);
-		for (j = 0; j < strlen(input); j++) {
-			flag = 0;
-			if (input[j] == '(')
+		right = 0;
+		scanf("%s", &input);
+		for (int i = 0; i < strlen(input); i++) {
+			if (input[i] == '(')
 				left++;
-			else if (input[j] == ')') {
-				left--;
-				if (left < 0) {
-					printf("NO\n");
-					flag = 1;//중복 출력 방지용 플래그
-					break;
-				}
-			}
+			else
+				right++;
 		}
-		if (left == 0&&flag==0)
+		if (left == right)
 			printf("YES\n");
-		else if(left>0&&flag==0)
+		else
 			printf("NO\n");
 	}
-	return 0;
 }
